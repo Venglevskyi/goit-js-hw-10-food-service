@@ -1,10 +1,11 @@
-import refs from '../utils/refs';C
+import refs from '../utils/refs';
 
-function handleChangeTheme({ target }) {
-  const Theme = {
+const Theme = {
     LIGHT: 'light-theme',
     DARK: 'dark-theme',
   };
+
+function handleChangeTheme({ target }) {
   if (target.checked === true) {
     refs.body.classList.add(Theme.DARK);
     refs.body.classList.remove(Theme.LIGHT);
@@ -15,5 +16,8 @@ function handleChangeTheme({ target }) {
   }
 }
 refs.body.addEventListener('change', handleChangeTheme);
+
+const storage = localStorage.setItem('Theme', JSON.stringify(Theme));
+console.log(storage);
 
 export default handleChangeTheme;
