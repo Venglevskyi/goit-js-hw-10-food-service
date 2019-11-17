@@ -1,23 +1,21 @@
 import refs from '../utils/refs';
-import Theme from '../components/theme';
 
-let changeTheme;
-if (localStorage.getItem('theme')) {
-  changeTheme = localStorage.getItem('theme');
-} else {
-  changeTheme = Theme.LIGHT;
-}
-refs.body.classList.add(changeTheme);
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
 
-function handleChangeTheme({ target }) {
-  if (target.checked === true) {
+function handleChangeTheme() {
+  let changeTheme = localStorage.getItem('theme') || Theme.LIGHT;
+  refs.body.classList.add(changeTheme);
+  if (refs.switch.checked === true) {
     changeTheme = localStorage.setItem('theme', Theme.DARK);
-    refs.body.classList.add('dark-theme');
-    refs.body.classList.remove('light-theme');
+    refs.body.classList.remove(Theme.LIGHT);
+    refs.body.classList.add(Theme.DARK);
   } else {
-    localStorage.setItem('theme', Theme.LIGHT);
-    refs.body.classList.remove('dark-theme');
-    refs.body.classList.add('light-theme');
+    changeTheme = localStorage.setItem('theme', Theme.LIGHT);
+    refs.body.classList.remove(Theme.DARK);
+    refs.body.classList.add(Theme.LIGHT);
   }
 }
 refs.switch.addEventListener('change', handleChangeTheme);

@@ -4,4 +4,4 @@ import refs from './utils/refs';
 import handleChangeTheme from './components/changeTheme';
 
 refreshList(database, refs.menu);
-handleChangeTheme;
+handleChangeTheme();
