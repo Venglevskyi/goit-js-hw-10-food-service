@@ -6,16 +6,14 @@ const Theme = {
 };
 
 function handleChangeTheme() {
-  let changeTheme = localStorage.getItem('theme') || Theme.LIGHT;
-  refs.body.classList.add(changeTheme);
   if (refs.switch.checked === true) {
-    changeTheme = localStorage.setItem('theme', Theme.DARK);
-    refs.body.classList.remove(Theme.LIGHT);
+    localStorage.setItem('theme', Theme.DARK);
     refs.body.classList.add(Theme.DARK);
+    refs.body.classList.remove(Theme.LIGHT);
   } else {
-    changeTheme = localStorage.setItem('theme', Theme.LIGHT);
-    refs.body.classList.remove(Theme.DARK);
+    localStorage.setItem('theme', Theme.LIGHT);
     refs.body.classList.add(Theme.LIGHT);
+    refs.body.classList.remove(Theme.DARK);
   }
 }
 refs.switch.addEventListener('change', handleChangeTheme);
